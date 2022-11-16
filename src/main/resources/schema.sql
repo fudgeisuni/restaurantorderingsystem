@@ -1,6 +1,12 @@
-SET SCHEMA PUBLIC;
+DROP TABLE IF EXISTS  "MealOrder";
+DROP TABLE IF EXISTS  "Customer";
+DROP TABLE IF EXISTS  "Chef";
+DROP TABLE IF EXISTS  "Meal";
+DROP TABLE IF EXISTS  "RestaurantOwner";
+DROP TABLE IF EXISTS  "Login";
 
-create table "Customer"
+
+create table IF NOT EXISTS "Customer"
 (
     "CustomerID"            int auto_increment,
     "CustomerName"          text,
@@ -8,57 +14,58 @@ create table "Customer"
     "CustomerTelephoneNum"  text,
     "CustomerAddress"       text,
     "CustomerLoginSystemID" int,
-    constraint CUSTOMER_PK
-        primary key ("CustomerID")
+     primary key ("CustomerID")
 );
 
-create table "Meal"
+create table IF NOT EXISTS "Meal"
 (
-    "MealID"    int,
+    "MealID"    int auto_increment,
     "MealName"  text,
     "MealType"  text,
     "MealPrice" int,
-    constraint MEAL_PK
-        primary key ("MealID")
+    primary key ("MealID")
 );
 
-create table "RestaurantOwner"
+create table IF NOT EXISTS "RestaurantOwner"
 (
-    "RestaurantOwnerID"   int,
+    "RestaurantOwnerID"   int auto_increment,
     "RestaurantOwnerName" text,
     "ROLoginSystemID"     int,
-    constraint RESTAURANTOWNER_PK
-        primary key ("RestaurantOwnerID")
+    primary key ("RestaurantOwnerID")
 );
 
-create table "Chef"
+create table IF NOT EXISTS "Chef"
 (
-    "ChefID"            int,
+    "ChefID"            int auto_increment,
     "ChefName"          text,
     "ChefSalary"        int,
     "ChefEmail"         text,
     "ChefPhoneNum"      text,
     "ChefLoginSystemID" int,
-    constraint CHEF_PK
-        primary key ("ChefID")
+    primary key ("ChefID")
 );
 
-create table "Login"
+create table IF NOT EXISTS "Login"
 (
-    "LoginID"       int,
+    "LoginID"       int auto_increment,
     "LoginSystemID" int,
     "Username"      text,
     "Password"      text,
-    constraint LOGIN_PK
-        primary key ("LoginID")
+    primary key ("LoginID")
 );
 
 create table "MealOrder"
 (
-    "MealOrderID" int,
-    "MealID"      int,
-    "CustomerID"  int,
-    "ChefID"      int,
-    constraint MEALORDER_PK
-        primary key ("MealOrderID")
+    "MealOrderID" INTEGER auto_increment
+        primary key,
+    "MealOID"     INTEGER,
+    "CustomerOID" INTEGER,
+    "ChefOID"     INTEGER,
+    "MealReady"   INTEGER default 0,
+    constraint CHEF_FK
+        foreign key ("ChefOID") references "Chef",
+    constraint CUSTOMER_FK
+        foreign key ("CustomerOID") references "Customer",
+    constraint MEAL_FK
+        foreign key ("MealOID") references "Meal"
 );
