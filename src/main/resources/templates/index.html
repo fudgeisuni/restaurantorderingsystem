@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Ordering System Homepage</title>
+    <link th:replace="fragments/header :: bootstrap-css"></link>
+    <link th:replace="fragments/header :: header-css"></link>
+    <style>
+        .masthead {
+            height: 100vh;
+            min-height: 500px;
+            background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .headerimg{
+            max-height: 50vh;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div th:replace="fragments/header :: header"></div>
+
+
+    <!-- Full Page Image Splash with Vertically Centered Content -->
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <img alt = "woman staring at phone" src="/images/WomanPhone.jpeg" class="img-fluid headerimg"/>
+                    <h1 class="fw-light">Meal Ordering Made Easy</h1>
+                    <p class="lead">Order meals easily online</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div th:replace="fragments/footer :: footer-links"></div>
+</div>
+
+<div th:replace="fragments/footer :: bootstrap-js"></div>
+</body>
+</html>

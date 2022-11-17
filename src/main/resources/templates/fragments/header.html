@@ -7,6 +7,12 @@
     <style th:fragment="header-css">
         .btn{
             margin-left:10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .headeringimg{
+            max-height: 6vh;
         }
     </style>
 </head>
@@ -16,7 +22,7 @@
     <div class="container">
         <a class="navbar-brand" href="#">
             <span>
-                <img alt="Restaurant Order System Picture" src="/images/header.jpeg" th:src="@{/images/header.jpeg}"/>
+                <img alt="Restaurant Order System Picture" src="/images/header.jpeg" class="img-fluid headeringimg" th:src="@{/images/header.jpeg}"/>
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
