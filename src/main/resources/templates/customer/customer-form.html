@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Customer Account</title>
+    <link th:replace="fragments/header :: bootstrap-css"></link>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container">
+
+    <h1>Enter your customer account details</h1>
+
+    <form th:action="@{/customer/save}" th:method="post" th:object="${customerForm}">
+
+        <input th:field="*{id}" type="hidden"/>
+
+        <div class="mb-3">
+            <label class="form-label" for="name">Name:</label>
+            <input class="form-control" th:field="*{name}" type="text"/>
+            <div class="alert alert-warning" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">Name Error</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-control" th:field="*{email}" type="text"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="telephoneNum">Telephone Number:</label>
+            <input class="form-control" th:field="*{teleNum}" type="text"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="address">Address:</label>
+            <input class="form-control" th:field="*{address}" type="text"/>
+        </div>
+
+        <input th:field="*{LoginsystemID}" type="hidden" value="1"/>
+
+        <div class="mb-3">
+
+            <button class="btn btn-primary">Submit</button>
+        </div>
+
+        <div>
+            <div class="mb-3">
+                <a class="btn btn-primary" href="/">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+
+<script th:replace="fragments/footer :: bootstrap-js"></script>
+
+</body>
+</html>
