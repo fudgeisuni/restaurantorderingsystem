@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          rel="stylesheet" th:fragment="bootstrap-css">
+    <style>
+        .btn{
+            margin-left:10px;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <span>
+                <img alt="Restaurant Order System Picture"  src="/images/header.jpeg"/>
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Meal Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-info" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-info" href="#">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
