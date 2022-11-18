@@ -1,9 +1,10 @@
+DROP TABLE IF EXISTS  "UserRoles";
 DROP TABLE IF EXISTS  "MealOrder";
 DROP TABLE IF EXISTS  "Customer";
 DROP TABLE IF EXISTS  "Chef";
 DROP TABLE IF EXISTS  "Meal";
 DROP TABLE IF EXISTS  "RestaurantOwner";
-DROP TABLE IF EXISTS  "Login";
+
 
 
 create table IF NOT EXISTS "Customer"
@@ -13,7 +14,7 @@ create table IF NOT EXISTS "Customer"
     "CustomerEmail"         text,
     "CustomerTelephoneNum"  text,
     "CustomerAddress"       text,
-    "CustomerLoginSystemID" int,
+    "CustomerPassword" text,
      primary key ("CustomerID")
 );
 
@@ -30,7 +31,7 @@ create table IF NOT EXISTS "RestaurantOwner"
 (
     "RestaurantOwnerID"   int auto_increment,
     "RestaurantOwnerName" text,
-    "ROLoginSystemID"     int,
+    "ROPassword"     text,
     primary key ("RestaurantOwnerID")
 );
 
@@ -41,18 +42,33 @@ create table IF NOT EXISTS "Chef"
     "ChefSalary"        int,
     "ChefEmail"         text,
     "ChefPhoneNum"      text,
-    "ChefLoginSystemID" int,
+    "ChefPassword" text,
     primary key ("ChefID")
 );
 
-create table IF NOT EXISTS "Login"
+create table IF NOT EXISTS "UserRoles"
 (
-    "LoginID"       int auto_increment,
-    "LoginSystemID" int,
-    "Username"      text,
-    "Password"      text,
-    primary key ("LoginID")
+    "UserRoleId"       int auto_increment,
+    "UserId"       int,
+    "RoleId" int,
+    primary key ("UserRoleId"),
+    constraint CHEF_FK
+        foreign key ("UserId") references "Chef",
+    constraint CUSTOMER_FK
+        foreign key ("UserId") references "Customer",
+    constraint RO_FK
+        foreign key ("UserId") references "RestaurantOwner",
+    constraint ROLE_FK
+        foreign key ("RoleId") references "Roles"
 );
+
+create table IF NOT EXISTS "Roles"
+(
+    "RoleId"       int auto_increment,
+    "RoleName" text,
+    primary key ("RoleId")
+);
+
 
 create table "MealOrder"
 (
@@ -62,10 +78,10 @@ create table "MealOrder"
     "CustomerOID" INTEGER,
     "ChefOID"     INTEGER,
     "MealReady"   INTEGER default 0,
-    constraint CHEF_FK
+    constraint CHEF_ORDER_FK
         foreign key ("ChefOID") references "Chef",
-    constraint CUSTOMER_FK
+    constraint CUSTOMER_ORDER_FK
         foreign key ("CustomerOID") references "Customer",
-    constraint MEAL_FK
+    constraint MEAL_ORDER_FK
         foreign key ("MealOID") references "Meal"
 );
